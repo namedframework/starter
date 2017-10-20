@@ -1,0 +1,7 @@
+{
+  "verbose": true,
+  "ext": "js",
+  "on-change-only": true,
+  "delay": 20,
+  "ignore": ["public/*", "views/*", "*.json"]
+}

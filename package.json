@@ -1,0 +1,40 @@
+{
+  "name": "starter",
+  "version": "0.0.1",
+  "description": "Named Framework starter",
+  "main": "app.js",
+  "dependencies": {
+    "async": "^2.5.0",
+    "bcrypt-nodejs": "0.0.3",
+    "connect-flash": "^0.1.1",
+    "lodash": "^4.17.4",
+    "lusca": "^1.5.1",
+    "mkdirp": "^0.5.1",
+    "multer": "^1.3.0",
+    "namedframework": "^0.1.9",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-google-oauth": "^1.0.0",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.4",
+    "pug": "^2.0.0-rc.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/namedframework/starter.git"
+  },
+  "keywords": [
+    "namedframework-starter"
+  ],
+  "author": "Sudarshan Pathak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/namedframework/starter/issues"
+  },
+  "homepage": "https://github.com/namedframework/starter#readme"
+}

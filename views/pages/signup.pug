@@ -1,0 +1,64 @@
+extends ../layout
+
+block head
+  title Named Framework Starter :: User Sign up
+  
+block content
+  .page-header
+    h3 Sign up
+  form.form-horizontal(id='signup-form', method='POST', action="/signup")
+    input(type='hidden', name='_csrf', value=_csrf)
+    .form-group
+      label.col-sm-3.control-label(for='email') Email
+      .col-sm-7
+        input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus, required)
+    .form-group
+      label.col-sm-3.control-label(for='password') Password
+      .col-sm-7
+        input.form-control(type='password', name='password', id='password', placeholder='Password', required)
+    .form-group
+      label.col-sm-3.control-label(for='confirmPassword') Confirm Password
+      .col-sm-7
+        input.form-control(type='password', name='confirmPassword', id='confirmPassword', placeholder='Confirm Password', required)
+    .form-group
+      .col-sm-offset-3.col-sm-7
+        button.btn.btn-success(type='submit')
+          i.fa.fa-user-plus
+          | Signup
+          
+  if Framework.config.oauth
+    br 
+    br
+    .form-group
+      .col-sm-offset-3.col-sm-7
+        if _.isPlainObject(Framework.config.oauth.facebook)
+          a.btn.btn-block.btn-facebook.btn-social(href='/signup/facebook')
+            i.fa.fa-facebook 
+            | 
+            | Sign up with Facebook
+        //- if _.isPlainObject(Framework.config.oauth.twitter)
+          a.btn.btn-block.btn-twitter.btn-social(href='/signup/twitter')
+            i.fa.fa-twitter 
+            | 
+            | Sign up with Twitter
+        
+        if _.isPlainObject(Framework.config.oauth.google)
+          a.btn.btn-block.btn-google.btn-social(href='/signup/google')
+            i.fa.fa-google-plus 
+            | 
+            | Sign up with Google
+        //- if _.isPlainObject(Framework.config.oauth.github)
+          a.btn.btn-block.btn-github.btn-social(href='/signup/github')
+            i.fa.fa-github 
+            | 
+            | Sign up with GitHub
+        //- if _.isPlainObject(Framework.config.oauth.linkedin)
+          a.btn.btn-block.btn-linkedin.btn-social(href='/signup/linkedin')
+            i.fa.fa-linkedin 
+            | 
+            | Sign up with LinkedIn
+        //- if _.isPlainObject(Framework.config.oauth.instagram)
+          a.btn.btn-block.btn-instagram.btn-social(href='/signup/instagram')
+            i.fa.fa-instagram 
+            | 
+            | Sign up with Instagram

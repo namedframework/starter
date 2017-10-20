@@ -1,0 +1,45 @@
+doctype html
+html
+  head
+    meta(charset="utf-8") 
+    meta(content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no", name="viewport") 
+    link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/vendor/font-awesome/css/font-awesome.min.css")
+    //- link(rel="stylesheet", href="/vendor/Ionicons/css/ionicons.min.css")
+    link(rel="stylesheet", href="/admin/dist/css/AdminLTE.min.css")
+    link(rel="stylesheet", href="/admin/dist/css/skins/skin-green-light.min.css")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic") 
+    
+    block head
+      title Named Framework :: Admin Panel  
+      
+  body.hold-transition.login-page
+    .login-box
+      .login-logo
+        a
+          b Named 
+          | Framework 
+      .login-box-body
+        include ../parts/message
+        p.login-box-msg Sign in to start your session 
+        
+        form(method="POST", action="/login/admin")
+          .form-group.has-feedback
+            input.form-control(type="username", name="username", placeholder="Username") 
+            span.glyphicon.glyphicon-envelope.form-control-feedback 
+          .form-group.has-feedback
+            input.form-control(type="password", name="password", placeholder="Password") 
+            span.glyphicon.glyphicon-lock.form-control-feedback 
+            
+          .row
+            .col-xs-12
+              button.btn.btn-primary.btn-block.btn-flat(type="submit") Sign In
+            
+            
+            
+    
+    script(src="/vendor/jquery/dist/jquery.min.js")
+    script(src="/vendor/bootstrap/dist/js/bootstrap.min.js")
+    script(src="/admin/dist/js/adminlte.min.js")
+
+    

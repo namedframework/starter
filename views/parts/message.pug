@@ -1,0 +1,36 @@
+if flash.success
+  each msg in flash.success
+    .alert.alert-success.alert-dismissible
+      button.close(type='button', data-dismiss='alert', aria-label='Close')
+        span(aria-hidden='true') ×
+      = msg
+if flash.info
+  each msg in flash.info
+    .alert.alert-info.alert-dismissible
+      button.close(type='button', data-dismiss='alert', aria-label='Close')
+        span(aria-hidden='true') ×
+      = msg
+if flash.warning
+  each msg in flash.warning
+    .alert.alert-warning.alert-dismissible
+      button.close(type='button', data-dismiss='alert', aria-label='Close')
+        span(aria-hidden='true') ×
+      = msg
+if flash.error
+  each msg in flash.error
+    .alert.alert-danger.alert-dismissible
+      button.close(type='button', data-dismiss='alert', aria-label='Close')
+        span(aria-hidden='true') ×
+      if msg.errors
+        each e in msg.errors
+          p= e.message ? e.message : JSON.stringify(e)
+      else if msg.error
+        = msg.error
+      else if msg.errmsg
+        = msg.errmsg
+      else if msg.message
+        = msg.message
+      else if _.isString(msg)
+        = msg
+      else
+        = JSON.stringify(msg, null, 2)

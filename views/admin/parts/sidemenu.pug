@@ -1,0 +1,24 @@
+aside.main-sidebar
+  section.sidebar
+    //- .user-panel
+      p Alexander Pierce
+        
+    ul.sidebar-menu(data-widget="tree")
+      li.header HEADER 
+      li(class=url === '/admin/dashboard' ? 'active' : '')
+        a(href="/admin/dashboard")
+          i.fa.fa-dashboard 
+          span Dashboard  
+      li(class=url === '/admin/routes' ? 'active' : '')
+        a(href="/admin/routes")
+          i.fa.fa-link 
+          span Routes  
+      li(class=url === '/admin/api' ? 'active' : '')
+        a(href="/admin/api")
+          i.fa.fa-magic 
+          span API  
+      li(class=url === '/logout/admin' ? 'active' : '')
+        a(href="/logout/admin")
+          i.fa.fa-sign-out 
+          span Log Out
+        
