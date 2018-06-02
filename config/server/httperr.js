@@ -10,14 +10,6 @@ module.exports = function (app) {
     next(err);
   });
 
-  // error handlers
-
-  // backoffice
-  app.use(Framework.config.api.path, function(err, req, res, next) {
-    var status = err.status || 500;
-    res.status(status).json({status: status, message: err.message});
-  });
-
   // default
   app.use(function(err, req, res, next) {
     var status = res.locals.status = err.status || 500;

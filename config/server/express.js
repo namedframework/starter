@@ -1,3 +1,4 @@
+const bodyParser = require('body-parser');
 const multer = require('multer');
 const passport = require('passport');
 const lusca = require('lusca');
@@ -5,19 +6,30 @@ const connectFlash = require('connect-flash');
 const mkdirp = require('mkdirp');
 const path = require('path');
 
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+
 module.exports = function (app) {
 
-  // app.use(require('express-status-monitor')());
-  // app.use( require('compression')() );
-  // app.use(require('morgan')('dev'));
-
-  // app.use(require('express-validator')());
-
-
-  // app.use( lusca.csrf() );
   app.use( lusca.xframe('SAMEORIGIN') );
   app.use( lusca.xssProtection(true) );
 
+
+  app.use( bodyParser.json() );
+  app.use( bodyParser.urlencoded({ extended: true }) );
+
+  app.use(session({
+    resave: true,
+    saveUninitialized: true,
+    secret: Framework.config.session.secret,
+    store: new MongoStore({
+      url: Framework.config.session.uri || Framework.config.mongo.uri,
+      autoReconnect: true,
+    }),
+  }));
+
+  app.use( lusca.csrf() );
 
   app.use(passport.initialize());
   app.use(passport.session());

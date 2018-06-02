@@ -1,11 +1,15 @@
 extend layout
 
 block content
-  section.content-header
-    h1 Admin Dashboard
-      small Welcome to Named Framework
-    ol.breadcrumb
-      li.active Dashboard
+  .content-header
+    .container-fluid
+      .row.mb-2
+        .col-sm-6
+          h1.m-0.text-dark Admin Dashboard
+        .col-sm-6
+          ol.breadcrumb.float-sm-right
+            li.breadcrumb-item.active Dashboard
+  
+  .content
+    .container-fluid
       
-  .content.container-fluid
-    h1 Welcome

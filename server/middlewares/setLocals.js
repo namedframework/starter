@@ -1,5 +1,7 @@
 module.exports = function (req, res, next) {
-
+  // url
+  res.locals.url = req.originalUrl;
+  
   // authenticated user
   if (req.isAuthenticated()){
     res.locals.isAuthenticated = req.isAuthenticated();
