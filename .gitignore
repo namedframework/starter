@@ -60,8 +60,6 @@ typings/
 # mac finder files
 .DS_Store
 
-package-lock.json
-
 # local config file
 local.js
 
