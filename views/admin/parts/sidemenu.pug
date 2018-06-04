@@ -4,7 +4,7 @@ aside.main-sidebar.sidebar-dark-primary.elevation-4
   .sidebar
     .user-panel.mt-3.pb-3.mb-3.d-flex
       .info
-        a.d-block(href='/')= admin.name
+        a.d-block(href='javascript:;')= admin.name
     nav.mt-2
       ul.nav.nav-pills.nav-sidebar.flex-column(data-widget='treeview', role='menu', data-accordion='false')
         li.nav-item
@@ -12,15 +12,16 @@ aside.main-sidebar.sidebar-dark-primary.elevation-4
             i.nav-icon.fa.fa-dashboard 
             p Dashboard  
         li.nav-item
-          a.nav-link(href="/admin/routes", class=url === '/admin/routes' ? 'active' : '')
-            i.nav-icon.fa.fa-link 
-            p Routes  
+          a.nav-link(href="/admin/admin/list", class=url.search('/admin/admin') > -1 ? 'active' : '')
+            i.nav-icon.fa.fa-users 
+            p Admins  
         li.nav-item
-          a.nav-link(href="/admin/api", class=url === '/admin/api' ? 'active' : '')
-            i.nav-icon.fa.fa-magic 
-            p API  
+          a.nav-link(href="/admin/user/list", class=url.search('/admin/user') > -1 ? 'active' : '')
+            i.nav-icon.fa.fa-user 
+            p Users  
+            
         li.nav-item
-          a.nav-link(href="/logout/admin", class=url === '/logout/admin' ? 'active' : '')
+          a.nav-link(href="/logout/admin")
             i.nav-icon.fa.fa-sign-out 
             p Log Out
           

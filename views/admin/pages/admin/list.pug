@@ -1,0 +1,156 @@
+extends ../../layout
+
+block content
+  .content-header
+    .container-fluid
+      .row.mb-2
+        .col-sm-6
+          h1.m-0.text-dark Admins
+        .col-sm-6
+          ol.breadcrumb.float-sm-right
+            li.breadcrumb-item
+              a(href="/admin") Dashboard
+              
+            li.breadcrumb-item.active Admins
+      
+  .content
+    .container-fluid
+      .card
+        .card-body
+          .btn.btn-sm.btn-success.pull-right(data-toggle="modal", data-target="#add-new-admin")
+            i.fa.fa-plus 
+            span  Add Admin
+          .table-responsive
+            table.table.table-hover
+              thead
+                tr
+                  th SN
+                  th Name 
+                  th Username   
+                  th Contact  
+                  th Action 
+              tbody
+                - var sn = 1
+                each admin in admins 
+                  tr
+                    td= sn++
+                    td= admin.name
+                    td
+                      span= admin.username
+                    td= admin.contact
+                    
+                    td
+                      if !admin.isSuperAdmin
+                          a.label.label-primary(href="#", data-toggle="modal", data-target="#edit-admin-" + admin._id) Edit
+                          a.label.label-info(data-toggle="modal", data-target="#change-admin-password-" + admin._id) Password  
+                          a.label.label-danger(data-toggle="modal", data-target="#delete-admin-" + admin._id) Delete   
+    #add-new-admin.modal.fade.in
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(data-dismiss="modal")
+              span x 
+            h4.modal-title Add New Admin 
+          form(method="POST", action="/admin/admin/add")
+            input(type='hidden', name='_csrf', value=_csrf) 
+            .modal-body
+              .row
+                .col-md-6
+                  .form-group
+                    label Name  
+                    input.form-control(type="text", placeholder="Name", name="name", required) 
+                .col-md-6
+                  .form-group
+                    label Username  
+                    input.form-control(type="text", placeholder="Username", name="username", required) 
+
+                .col-md-6
+                  .form-group
+                    label Password 
+                    input.form-control(type="password", placeholder="Password", name="password", required) 
+                .col-md-6
+                  .form-group
+                    label Confirm Password 
+                    input.form-control(type="password", placeholder="Confirm Password", name="confirmPassword", required) 
+                
+                .col-md-6
+                  .form-group
+                    label Contact 
+                    input.form-control(type="text", placeholder="Contact", name="contact", required) 
+                .col-md-6
+                  .form-group
+                    label Remarks (optional) 
+                    input.form-control(type="text", placeholder="Remarks", name="remarks") 
+            .modal-footer
+              .btn.btn-default(data-dismiss="modal") Cancel
+              button.btn.btn-success(type="submit") Save  
+            
+
+  each admin in admins
+    if !admin.isSuperAdmin
+      .modal.fade.in(id="edit-admin-" + admin._id)
+        input(type='hidden', name='_csrf', value=_csrf) 
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close(data-dismiss="modal")
+                span x 
+              h4.modal-title Edit Admin: #{admin.name}
+            form(method="POST", action="/admin/admin/edit/info/" + admin._id)
+              input(type='hidden', name='_csrf', value=_csrf) 
+              .modal-body
+                .row
+                  .col-md-6
+                    .form-group
+                      label Name 
+                      input.form-control(type="text", placeholder="Name", name="name", value=admin.name, required) 
+                
+                  .col-md-6
+                    .form-group
+                      label Contact 
+                      input.form-control(type="text", placeholder="Contact", name="contact", value=admin.contact, required) 
+                  .col-md-6
+                    .form-group
+                      label Remarks (optional) 
+                      input.form-control(type="text", placeholder="Remarks", name="remarks", value=admin.remarks) 
+              .modal-footer
+                .btn.btn-default(data-dismiss="modal") Cancel
+                button.btn.btn-success(type="submit") Save 
+    
+      .modal.fade.in(id="change-admin-password-" + admin._id)
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close(data-dismiss="modal")
+                span x 
+              h4.modal-title New Password: #{admin.name} 
+                | 
+                small= admin.username
+            form(method="POST", action="/admin/admin/edit/password/" + admin._id)
+              input(type='hidden', name='_csrf', value=_csrf) 
+              .modal-body
+                .form-group
+                  label Password 
+                  input.form-control(type="password", placeholder="Password", name="password", required) 
+                .form-group
+                  label Confirm Password 
+                  input.form-control(type="password", placeholder="Confirm Password", name="confirmPassword", required) 
+                
+              .modal-footer
+                .btn.btn-default(data-dismiss="modal") Cancel
+                button.btn.btn-primary(type="submit") Change   
+                  
+    if !admin.isSuperAdmin
+      .modal.fade.in(id="delete-admin-" + admin._id)
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close(data-dismiss="modal")
+                span x 
+              h4.modal-title Remove Admin: #{admin.name}
+            form(method="POST", action="/admin/admin/remove/" + admin._id)
+              .modal-body
+                p.text-danger.text-bold Are you sure to delete this admin.
+              .modal-footer
+                .btn.btn-default(data-dismiss="modal") Cancel
+                button.btn.btn-danger(type="submit") Delete  

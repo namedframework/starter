@@ -1,0 +1,36 @@
+extends ../../layout
+
+block content
+  .content-header
+    .container-fluid
+      .row.mb-2
+        .col-sm-6
+          h1.m-0.text-dark Users
+        .col-sm-6
+          ol.breadcrumb.float-sm-right
+            li.breadcrumb-item
+              a(href="/admin") Dashboard
+            li.breadcrumb-item.active Users
+      
+  .content
+    .container-fluid
+      .card
+        .card-body.table-responsive
+          table.table.table-hover
+            thead
+              tr
+                th SN
+                th Created 
+                th Name 
+                th Email  
+            tbody
+              each user, i in users 
+                tr
+                  td= i + 1
+                  td= user.createdAt
+                  td= user.name
+                  td
+                    span= user.email 
+                    | 
+                    if user.isEmailVerified
+                      i.fa.fa-check-square.text-primary 

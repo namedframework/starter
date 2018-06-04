@@ -1,6 +1,4 @@
 module.exports = {
-  api: false,
-  
   schema: {
     name: {
       type: "String",
@@ -18,10 +16,16 @@ module.exports = {
     securityHash: {
       type: "String"
     },
-    isActive: {
+    isSuperAdmin: {
       type: Boolean,
-      default: true
-    }
+      default: false
+    },
+    contact: {
+      type: "String",
+    },
+    remarks: {
+      type: "String",
+    },
   },
   options: {
     strict: true

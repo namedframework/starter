@@ -26,7 +26,6 @@ module.exports = {
     instagram: {},
     linkedin: {},
     steam: String,
-    apiTokens: Array,
     name: String,
     gender: String,
     location: String,

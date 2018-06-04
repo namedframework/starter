@@ -8,6 +8,7 @@ block content
     h3 Profile Information
 
   form.form-horizontal(action='/user/profile', method='POST')
+    input(type='hidden', name='_csrf', value=_csrf) 
     .form-group
       label.col-sm-3.control-label(for='email') Email
       .col-sm-7
@@ -51,6 +52,7 @@ block content
     h3 Change Password
 
   form.form-horizontal(action='/user/password', method='POST')
+    input(type='hidden', name='_csrf', value=_csrf) 
     .form-group
       label.col-sm-3.control-label(for='password') New Password
       .col-sm-7
@@ -105,6 +107,7 @@ block content
     h3 Delete Account
 
   form.form-horizontal(action='/user/delete', method='POST')
+    input(type='hidden', name='_csrf', value=_csrf) 
     .form-group
       p.col-sm-offset-3.col-sm-4 You can delete your account, but keep in mind this action is irreversible.
       .col-sm-offset-3.col-sm-4
