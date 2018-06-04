@@ -5,6 +5,7 @@ module.exports = {
   post: function (req, res, next) {
 
     const { username, password } = req.body;
+    const captchResponse = req.body['g-recaptcha-response'];
 
     async.series([
       // check
@@ -13,6 +14,20 @@ module.exports = {
           return cb("Username and password can not be empty");
         }
 
+        if (!Framework.config.recaptcha  || Framework.app.get('env') !== "production"){
+          return cb();
+        }
+
+        if(Framework.utils.isEmpty(captchResponse)){
+          return cb("Verify that you are not a robot.");
+        }
+
+        // verify captcha
+        Framework.utils.recaptcha.verify(captchResponse, function (err) {
+          return cb(err);
+        });
+      },
+      function (cb) {
         Framework.models.Admin.findOne({
           username: username.toLowerCase()
         }, '_id name password')
@@ -49,7 +64,6 @@ module.exports = {
         Framework.models.Admin.findByIdAndUpdate(res.locals.user._id, {
           securityHash: adminData.securityHash
         }, function (err, result) {
-          console.log(err);
           if(err) return cb('Security Check Failed! Try Again!');
           // set the user agent (browser) to session
           req.session.admin = adminData;
