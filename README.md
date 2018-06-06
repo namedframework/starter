@@ -1,7 +1,17 @@
 # [namedframework](https://www.namedframework.com)
-> Namedframework and its Documentation are under development. Feedback and help is always welcome. **[Documentation](http://docs.namedframework.com/)**
+
+[![NPM](https://nodei.co/npm/namedframework.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/namedframework/)
+
+## **[Documentation](http://docs.namedframework.com/)**
 
 ## Features
+
+* Routes based on directory structure.
+* Mongoose models
+* Express middlewares made easy
+* Easy Configuration
+
+## Starter Features
 
 * User login.
   * Local (Email / Password)
@@ -10,7 +20,8 @@
 * Admin Login
 * Admin Panel
   * Dashboard
-  * API Endpoints
+  * Admins
+  * Users
 
 
 ## Design
