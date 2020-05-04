@@ -7,9 +7,9 @@ module.exports =
   # https://docs.mongodb.com/manual/reference/connection-string/
   */
   mongo: {
-    uri: process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/namedframework-starter',
+    // uri: process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/namedframework-starter',
   },
   session: {
-    secret: "lkdsjaflkjdsflk3435lkjfdsafkl"
+    // secret: "<some-top-secret>"
   }
 };

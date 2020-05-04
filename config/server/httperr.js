@@ -8,18 +8,6 @@ module.exports = function (app) {
     next(err);
   });
 
-  // admin errors
-  app.use('/admin', function(err, req, res, next) {
-    var status = res.locals.status = err.status || 500;
-
-    if (app.get('env') === 'development' && status !== 404){
-      res.locals.error = err;
-    }
-
-    const page = status === 500 ? 'admin/error/500' : 'admin/error/404';
-    return res.render(page);
-  });
-
   // default
   app.use(function(err, req, res, next) {
     var status = res.locals.status = err.status || 500;
